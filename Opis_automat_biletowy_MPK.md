@@ -1,7 +1,7 @@
-##Link do repozytorium
+## Link do repozytorium
 https://github.com/KingaP00/Automat_biletowy_JS
 
-##Temat projektu
+## Temat projektu
 1. Automat biletowy MPK
 
 Opis zadania
