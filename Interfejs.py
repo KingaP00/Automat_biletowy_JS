@@ -41,6 +41,8 @@ class Interfejs:
         tekst10.place(x=400, y=450)
         tekst11 = Label(widok, text='')
         tekst11.place(x=200, y=450)
+
+
         self.komunikat = tekst11
         self.komunikat_suma = tekst8
 
@@ -163,6 +165,11 @@ class Interfejs:
                         command=lambda: [self.koncz(), tekst9.configure(text='Twoje pieniądze : ' + self.pobierz_twojepieniadze())])
         koniec.place(x=400, y=470)
 
+        # rezygnacja
+        rezygnacja = Button(widok, text='Rezygnuję', width=10,
+                        command=lambda: [self.rezygnacja(), tekst9.configure(text='Twoje pieniądze : ' + self.pobierz_twojepieniadze())])
+        rezygnacja.place(x=300, y=470)
+
         self.komunikat_bilet20u_tekst = bilet20u_tekst
         self.komunikat_bilet40u_tekst = bilet40u_tekst
         self.komunikat_bilet60u_tekst = bilet60u_tekst
@@ -217,6 +224,21 @@ class Interfejs:
     def wrzucone(self, wartosc):
         self.twojepieniadze += wartosc
 
+    def rezygnacja(self):
+        self.twojepieniadze = 0
+        suma = self.suma.suma
+        self.komunikat.configure(text='Zrezygnowałeś z zakupu biletu')
+        self.komunikat_suma.configure(text='Suma : 0.0')
+        self.komunikat_bilet20u_tekst.configure(text='0')
+        self.komunikat_bilet40u_tekst.configure(text='0')
+        self.komunikat_bilet60u_tekst.configure(text='0')
+        self.komunikat_bilet20n_tekst.configure(text='0')
+        self.komunikat_bilet40n_tekst.configure(text='0')
+        self.komunikat_bilet60n_tekst.configure(text='0')
+        self.twojepieniadze = 0
+        for key in self.bilety.keys():
+            self.bilety[key]['ilosc'] = 0
+        self.suma.suma = 0
     def koncz(self):
         """
         PLAN
@@ -248,7 +270,6 @@ class Interfejs:
             if self.twojepieniadze == suma:
                 self.komunikat.configure(text='Dziękujemy za zakup')
                 monety.zaakceptuj_monety()
-                self.twojepieniadze = 0
                 self.komunikat_suma.configure(text='Suma : 0.0')
                 self.komunikat_bilet20u_tekst.configure(text='0')
                 self.komunikat_bilet40u_tekst.configure(text='0')
@@ -256,6 +277,10 @@ class Interfejs:
                 self.komunikat_bilet20n_tekst.configure(text='0')
                 self.komunikat_bilet40n_tekst.configure(text='0')
                 self.komunikat_bilet60n_tekst.configure(text='0')
+                self.twojepieniadze = 0
+                for key in self.bilety.keys():
+                    self.bilety[key]['ilosc'] = 0
+                self.suma.suma=0
 
             elif self.twojepieniadze > suma:
                 try:
@@ -270,6 +295,10 @@ class Interfejs:
                     self.komunikat_bilet20n_tekst.configure(text='0')
                     self.komunikat_bilet40n_tekst.configure(text='0')
                     self.komunikat_bilet60n_tekst.configure(text='0')
+                    for key in self.bilety.keys():
+                        self.bilety[key]['ilosc'] = 0
+                    self.twojepieniadze = 0
+                    self.suma.suma = 0
 
                 except ValueError:
                     self.komunikat.configure(text='Prosimy o dokładną kwotę')
