@@ -6,11 +6,11 @@ class Automat():
     def init(self):
         super().init()
 
-    def odejmijBilet(self, cena):
+    def odejmijCene(self, cena):
         self.suma -= cena
         print('Odjęto bilet o wartości : ' + str(cena/100) + 'zł')
 
-    def dodajBilet(self, cena):
+    def dodajCene(self, cena):
         self.suma += cena
         print('Dodano bilet o wartości : ' + str(cena/100) + 'zł')
 

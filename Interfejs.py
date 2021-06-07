@@ -2,8 +2,41 @@ from tkinter import *
 from Automat import *
 
 class Interfejs:
+
+    # bilety
+    bilety = {
+        "bilet20u": {
+            "cena": 150,
+            "ilosc": 0,
+        },
+        "bilet40u": {
+            "cena": 250,
+            "ilosc": 0,
+        },
+        "bilet60u": {
+            "cena": 350,
+            "ilosc": 0,
+        },
+        "bilet20n": {
+            "cena": 300,
+            "ilosc": 0,
+        },
+        "bilet40n": {
+            "cena": 500,
+            "ilosc": 0,
+        },
+        "bilet60n": {
+            "cena": 700,
+            "ilosc": 0,
+        }
+    }
+
     def __init__(self):
-        pass
+        # okno interfejsu
+
+        self.suma = Automat()
+        self.monety = Monety()
+        self.twojepieniadze = 0
 
     def mojInterfejs(self):
 
@@ -12,11 +45,9 @@ class Interfejs:
         widok.geometry('500x500')
 
         # potrzebne zmienne
-        suma = Automat()
-        self.suma = suma
-        dodawanie = Monety()
-        self.monety = dodawanie
-        self.twojepieniadze = 0
+        suma = self.suma
+        dodawanie = self.monety
+
 
         # napisy
         tekst1 = Label(widok, text='Witaj!')
@@ -180,48 +211,22 @@ class Interfejs:
 
         widok.mainloop()
 
-    # bilety
-    bilety = {
-        "bilet20u": {
-            "cena": 150,
-            "ilosc": 0,
-        },
-        "bilet40u": {
-            "cena": 250,
-            "ilosc": 0,
-        },
-        "bilet60u": {
-            "cena": 350,
-            "ilosc": 0,
-        },
-        "bilet20n": {
-            "cena": 300,
-            "ilosc": 0,
-        },
-        "bilet40n": {
-            "cena": 500,
-            "ilosc": 0,
-        },
-        "bilet60n": {
-            "cena": 700,
-            "ilosc": 0,
-        }
-    }
+
 
     def dodaj_bilet(self, bilet, tekst, suma):
         bilet['ilosc'] += 1
         tekst.configure(text=bilet['ilosc'])
-        self.suma.dodajBilet(bilet['cena'])
+        self.suma.dodajCene(bilet['cena'])
         suma.configure(text='Suma' + self.suma.pobierz_suma())
 
     def usun_bilet(self, bilet, tekst, suma):
         if bilet['ilosc'] > 0:
             bilet['ilosc'] -= 1
             tekst.configure(text=bilet['ilosc'])
-            self.suma.odejmijBilet(bilet['cena'])
+            self.suma.odejmijCene(bilet['cena'])
             suma.configure(text='Suma' + self.suma.pobierz_suma())
 
-    def wrzucone(self, wartosc):
+    def wrzucone(self, wartosc):#
         self.twojepieniadze += wartosc
 
     def rezygnacja(self):
@@ -239,6 +244,8 @@ class Interfejs:
         for key in self.bilety.keys():
             self.bilety[key]['ilosc'] = 0
         self.suma.suma = 0
+
+
     def koncz(self):
         """
         PLAN
@@ -311,5 +318,8 @@ class Interfejs:
     def pobierz_twojepieniadze(self):
         return str(self.twojepieniadze/100)
 
-Interfejs = Interfejs()
-Interfejs.mojInterfejs()
+
+
+if __name__ == "__main__":
+    interfejs = Interfejs()
+    interfejs.mojInterfejs()

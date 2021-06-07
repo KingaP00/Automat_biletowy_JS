@@ -1,5 +1,3 @@
-
-
 class Monety:
     monety = {
         1: 0,
@@ -25,12 +23,12 @@ class Monety:
         self.monety[wartosc] += 1
 
     def suma(self):
-        print('Suma', sum(self.automat_lista_monet))
-        return sum(self.automat_lista_monet)
+        suma = sum([x * self.monety[x] for x in self.monety.keys()])
+        print('Suma', suma)
+        return suma
 
     def oblicz_reszte(self, suma, pieniadze):
         self.do_wydania = pieniadze - suma
-
         for key in sorted(self.monety.keys(), reverse=True):
             if key < self.do_wydania:
                 self.wydaj_monete(key)
@@ -40,7 +38,7 @@ class Monety:
         self.podglad_monet('Po wyliczeniu reszty')
         if self.do_wydania != 0:
             self.monety = {key: 0 for key in self.monety.keys()}
-            self.podglad_monet('Błąd, nie ma z czego wydać')
+            self.podglad_monet('Błąd, nie ma z czego wydać reszty')
             raise ValueError()
 
         return True
@@ -70,4 +68,5 @@ class Monety:
         print("Monety:", self.monety)
         print("Reszta:", self.reszta)
         print("####################################################")
+        pass
 
