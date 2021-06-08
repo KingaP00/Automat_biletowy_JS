@@ -1,4 +1,5 @@
 class Monety:
+    """Klasa przechowująca monety"""
     monety = {
         1: 0,
         2: 0,

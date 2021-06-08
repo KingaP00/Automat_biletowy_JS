@@ -226,7 +226,7 @@ class Interfejs:
             self.suma.odejmijCene(bilet['cena'])
             suma.configure(text='Suma' + self.suma.pobierz_suma())
 
-    def wrzucone(self, wartosc):#
+    def wrzucone(self, wartosc):
         self.twojepieniadze += wartosc
 
     def rezygnacja(self):
@@ -248,12 +248,11 @@ class Interfejs:
 
     def koncz(self):
         """
-        PLAN
-            1. Czy użytkownik wrzucił więcej pieniędzy lub tyle co trzeba - DONE
-            2. Jeśli tyle co trzeba to :  - DONE
+            Czy użytkownik wrzucił więcej/mniej pieniędzy czy tyle co trzeba
+            1.Jeśli tyle co trzeba to :
                 - dodaj pieniądze do wartości w maszynie
                 - wyzeruj licznik klienta
-            3. Jeśli mniej:   - DONE
+            3. Jeśli mniej:
                 - Informacja - za mało pieniędzy
 
             4. Jeśli więcej:

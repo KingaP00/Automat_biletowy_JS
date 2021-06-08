@@ -1,6 +1,7 @@
 from Monety import *
 
 class Automat():
+    """Klasa odpowiedzialna za obsłguę automatu"""
     suma = 0
 
     def init(self):
